@@ -19,32 +19,47 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: const _CustomAppBar(),
-        bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: Colors.deepPurple.shade800,
-            unselectedItemColor: Colors.white,
-            selectedItemColor: Colors.white,
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
+        bottomNavigationBar: const _CustomNavBar(),
+        body: SingleChildScrollView(
+            child: Text(
+          "duyguduygu",
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                fontWeight: FontWeight.bold,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_outline),
-                label: 'Favorites',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.play_circle_outline),
-                label: 'Pay',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.people_outline),
-                label: 'Profile',
-              ),
-            ]),
-        body: Container(),
+        )),
       ),
     );
+  }
+}
+
+class _CustomNavBar extends StatelessWidget {
+  const _CustomNavBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.deepPurple.shade800,
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.white,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_outline),
+            label: 'Favorites',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.play_circle_outline),
+            label: 'Pay',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people_outline),
+            label: 'Profile',
+          ),
+        ]);
   }
 }
 
