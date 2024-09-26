@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       title: 'Music Player',
       debugShowCheckedModeBanner: false,
       theme: myThemeData,
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
