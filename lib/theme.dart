@@ -19,23 +19,23 @@ import 'package:flutter/material.dart';
 
 final TextTheme myTextTheme = TextTheme(
   displayLarge: TextStyle(
-      fontSize: 57.0, fontWeight: FontWeight.bold, color: Colors.black),
+      fontSize: 57.0, fontWeight: FontWeight.bold, color: Colors.white),
   displayMedium: TextStyle(
-      fontSize: 45.0, fontWeight: FontWeight.w600, color: Colors.black87),
+      fontSize: 45.0, fontWeight: FontWeight.w600, color: Colors.white),
   displaySmall: TextStyle(
-      fontSize: 36.0, fontWeight: FontWeight.w600, color: Colors.black87),
+      fontSize: 36.0, fontWeight: FontWeight.w600, color: Colors.white),
   headlineLarge: TextStyle(
-      fontSize: 32.0, fontWeight: FontWeight.w500, color: Colors.black),
+      fontSize: 32.0, fontWeight: FontWeight.w500, color: Colors.white),
   headlineMedium: TextStyle(
-      fontSize: 28.0, fontWeight: FontWeight.w500, color: Colors.black87),
+      fontSize: 28.0, fontWeight: FontWeight.w500, color: Colors.white),
   headlineSmall: TextStyle(
-      fontSize: 24.0, fontWeight: FontWeight.w500, color: Colors.black87),
+      fontSize: 24.0, fontWeight: FontWeight.w500, color: Colors.white),
   titleLarge: TextStyle(
-      fontSize: 22.0, fontWeight: FontWeight.w500, color: Colors.black),
+      fontSize: 22.0, fontWeight: FontWeight.w500, color: Colors.white),
   titleMedium: TextStyle(
-      fontSize: 16.0, fontWeight: FontWeight.w500, color: Colors.black87),
+      fontSize: 16.0, fontWeight: FontWeight.w500, color: Colors.white),
   titleSmall: TextStyle(
-      fontSize: 14.0, fontWeight: FontWeight.w400, color: Colors.black87),
+      fontSize: 14.0, fontWeight: FontWeight.w400, color: Colors.white),
   bodyLarge: TextStyle(
       fontSize: 16.0, fontWeight: FontWeight.normal, color: Colors.grey[800]),
   bodyMedium: TextStyle(

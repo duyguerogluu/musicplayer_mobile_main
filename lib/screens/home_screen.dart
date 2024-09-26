@@ -38,13 +38,58 @@ class HomeScreen extends StatelessWidget {
         appBar: const _CustomAppBar(),
         bottomNavigationBar: const _CustomNavBar(),
         body: SingleChildScrollView(
-            child: Text(
-          "duyguduygu",
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-        )),
+          child: _DiscoverMusic(),
+        ),
       ),
+    );
+  }
+}
+
+class _DiscoverMusic extends StatelessWidget {
+  const _DiscoverMusic({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Welcome",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              const SizedBox(height: 5.0),
+              Text(
+                "Enjoy Your Favorite Music",
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              const SizedBox(height: 20.0),
+              TextFormField(
+                decoration: InputDecoration(
+                  isDense: true,
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Search',
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Colors.grey.shade400),
+                  prefixIcon: Icon(Icons.search, color: Colors.grey.shade400),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
@@ -88,7 +133,10 @@ class _CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      leading: const Icon(Icons.grid_view_rounded),
+      leading: const Icon(
+        Icons.grid_view_rounded,
+        color: Colors.white,
+      ),
       actions: [
         Container(
           margin: const EdgeInsets.only(right: 20),
