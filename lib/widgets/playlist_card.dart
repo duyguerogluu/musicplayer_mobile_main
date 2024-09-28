@@ -1,3 +1,20 @@
+/*
+ *  This file is part of musicplayer_mobile_main.
+ *
+ *  musicplayer_mobile_main is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  musicplayer_mobile_main is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *   along with musicplayer_mobile_main.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -5,17 +22,17 @@ import '../models/playlist_model.dart';
 
 class PlayListCard extends StatelessWidget {
   const PlayListCard({
-    super.key,
-    required this.playlists,
+    Key? key,
+    required this.playlist,
   });
 
-  final Playlist playlists;
+  final Playlist playlist;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed('/playlist', arguments: playlists);
+        Get.toNamed('/playlist', arguments: playlist);
       },
       child: Container(
         height: 75,
@@ -31,7 +48,7 @@ class PlayListCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
               child: Image.network(
-                playlists.imageUrl,
+                playlist.imageUrl,
                 height: 50,
                 width: 50,
                 fit: BoxFit.cover,
@@ -44,14 +61,14 @@ class PlayListCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    playlists.title,
+                    playlist.title,
                     style: Theme.of(context)
                         .textTheme
                         .bodyLarge!
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    '${playlists.songs.length} songs',
+                    '${playlist.songs.length} songs',
                     maxLines: 2,
                     style: Theme.of(context).textTheme.bodySmall,
                   )

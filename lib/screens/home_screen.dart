@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                       itemCount: playlists.length,
                       itemBuilder: ((context, index) {
                         return PlayListCard(
-                          playLists: playLists[index],
+                         playlist: playlists[index],
                         );
                       }),
                     ),
