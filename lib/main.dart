@@ -16,8 +16,11 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:musicplayer_mobile_main/screens/home_screen.dart';
 import 'package:musicplayer_mobile_main/theme.dart';
+
+import 'widgets/page_routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,11 +31,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Music Player',
       debugShowCheckedModeBanner: false,
       theme: myThemeData,
       home: const HomeScreen(),
+      initialRoute: PageRoutes.intial,
+      getPages: PageRoutes.routes,
     );
   }
 }
