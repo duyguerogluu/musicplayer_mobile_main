@@ -18,6 +18,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:musicplayer_mobile_main/screens/home_screen.dart';
+import 'package:musicplayer_mobile_main/screens/song_screen.dart';
 import 'package:musicplayer_mobile_main/theme.dart';
 
 import 'widgets/page_routes.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       title: 'Music Player',
       debugShowCheckedModeBanner: false,
       theme: myThemeData,
-      home: const HomeScreen(),
+      home: const SongScreen(),
       initialRoute: PageRoutes.intial,
       getPages: PageRoutes.routes,
     );

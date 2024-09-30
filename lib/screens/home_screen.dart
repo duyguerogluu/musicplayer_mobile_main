@@ -18,8 +18,7 @@
 import 'package:flutter/material.dart';
 import 'package:musicplayer_mobile_main/models/playlist_model.dart';
 import 'package:musicplayer_mobile_main/models/song_model.dart';
-
-import '../widgets/playlist_card';
+import '../widgets/playlist_card.dart';
 import '../widgets/section_header.dart';
 import '../widgets/song_card.dart';
 
@@ -61,11 +60,9 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 20),
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: playlists.length,
-                      itemBuilder: ((context, index) {
-                        return PlayListCard(
-                         playlist: playlists[index],
-                        );
-                      }),
+                      itemBuilder: (context, index) {
+                        return PlayListCard(playlists: playlists[index]);
+                      },
                     ),
                   ],
                 ),
