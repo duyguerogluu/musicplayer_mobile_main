@@ -1,3 +1,22 @@
+/*
+ *  This file is part of musicplayer_mobile_main.
+ *
+ *  musicplayer_mobile_main is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  musicplayer_mobile_main is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *   along with musicplayer_mobile_main.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 class SeekBarData {
@@ -25,10 +44,24 @@ class SeekBar extends StatefulWidget {
 }
 
 class _SeekBarState extends State<SeekBar> {
+  double? _dragValue;
+
+  String _formatDuration(Duration? duration) {
+    if (duration == null) {
+      return '--:--';
+    } else {
+      String minutes = duration.inMinutes.toString().padLeft(2, '0');
+      String seconds =
+          duration.inSeconds.remainder(60).toString().padLeft(2, '0');
+      return '$minutes:$seconds';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
+        Text(_formatDuration(widget.position)),
         Expanded(
           child: SliderTheme(
             data: SliderTheme.of(context).copyWith(
@@ -46,11 +79,38 @@ class _SeekBarState extends State<SeekBar> {
               overlayColor: Colors.white,
             ),
             child: Slider(
-              value: 0,
-              onChanged: (value) {},
+              min: 0.0,
+              max: widget.duration.inMilliseconds.toDouble(),
+              value: min(
+                _dragValue ?? widget.position.inMilliseconds.toDouble(),
+                widget.duration.inMilliseconds.toDouble(),
+              ),
+              onChanged: (value) {
+                setState(() {
+                  _dragValue = value;
+                });
+                if (widget.onChanged != null) {
+                  widget.onChanged!(
+                    Duration(
+                      milliseconds: value.round(),
+                    ),
+                  );
+                }
+              },
+              onChangeEnd: (value) {
+                if (widget.onChangeEnd != null) {
+                  widget.onChangeEnd!(
+                    Duration(
+                      milliseconds: value.round(),
+                    ),
+                  );
+                }
+                _dragValue = null;
+              },
             ),
           ),
         ),
+        Text(_formatDuration(widget.duration)),
       ],
     );
   }
