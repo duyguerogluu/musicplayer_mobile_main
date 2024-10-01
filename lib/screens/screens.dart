@@ -15,30 +15,6 @@
  *   along with musicplayer_mobile_main.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:musicplayer_mobile_main/screens/home_screen.dart';
-import 'package:musicplayer_mobile_main/screens/song_screen.dart';
-import 'package:musicplayer_mobile_main/theme.dart';
-
-import 'widgets/page_routes.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Music Player',
-      debugShowCheckedModeBanner: false,
-      theme: myThemeData,
-      home: const HomeScreen(),
-      initialRoute: PageRoutes.intial,
-      getPages: PageRoutes.routes,
-    );
-  }
-}
+export 'home_screen.dart';
+export 'playlist_screen.dart';
+export 'song_screen.dart';

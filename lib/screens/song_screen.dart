@@ -1,4 +1,22 @@
+/*
+ *  This file is part of musicplayer_mobile_main.
+ *
+ *  musicplayer_mobile_main is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  musicplayer_mobile_main is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *   along with musicplayer_mobile_main.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart' as rxdart;
 import '../models/song_model.dart';
@@ -14,16 +32,23 @@ class SongScreen extends StatefulWidget {
 
 class _SongScreenState extends State<SongScreen> {
   AudioPlayer audioPlayer = AudioPlayer();
-  Song song = Song.songs[0];
+  Song song = Get.arguments   ?? Song.songs[0];
   @override
   void initState() {
     super.initState();
 
-    audioPlayer.setAudioSource(ConcatenatingAudioSource(children: [
-      AudioSource.uri(
-        Uri.parse('asset:///${song.url}'),
+    audioPlayer.setAudioSource(
+      ConcatenatingAudioSource(
+        children: [
+          AudioSource.uri(
+            Uri.parse('asset:///${song.url}'),
+          ),
+          AudioSource.uri(
+            Uri.parse('asset:///${Song.songs[1].url}'),
+          ),
+        ],
       ),
-    ]));
+    );
   }
 
   @override
@@ -61,6 +86,7 @@ class _SongScreenState extends State<SongScreen> {
           ),
           const _BackgroundFilter(),
           _MusicPlayer(
+            song: song,
             seekBarDataStream: _seekBarDataStream,
             audioPlayer: audioPlayer,
           ),
@@ -72,22 +98,37 @@ class _SongScreenState extends State<SongScreen> {
 
 class _MusicPlayer extends StatelessWidget {
   const _MusicPlayer({
-    super.key,
+    Key? key,
+    required this.song,
     required Stream<SeekBarData> seekBarDataStream,
     required this.audioPlayer,
-  }) : _seekBarDataStream = seekBarDataStream;
+  })  : _seekBarDataStream = seekBarDataStream,
+        super(key: key);
 
+  final Song song;
   final Stream<SeekBarData> _seekBarDataStream;
   final AudioPlayer audioPlayer;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(song.title,
+              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  )),
+          const SizedBox(height: 10.0),
+          Text(song.description,
+              maxLines: 2,
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    color: Colors.white,
+                  )),
+          const SizedBox(height: 30),
           StreamBuilder<SeekBarData>(
               stream: _seekBarDataStream,
               builder: (context, snapshot) {
@@ -99,12 +140,33 @@ class _MusicPlayer extends StatelessWidget {
                 );
               }),
           PlayerButtons(audioPlayer: audioPlayer),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              IconButton(
+                iconSize: 35,
+                onPressed: () {},
+                icon: const Icon(
+                  color: Colors.white,
+                  Icons.settings,
+                ),
+              ),
+              IconButton(
+                iconSize: 35,
+                onPressed: () {},
+                icon: const Icon(
+                  color: Colors.white,
+                  Icons.cloud_download,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
   }
 }
-
 
 class _BackgroundFilter extends StatelessWidget {
   const _BackgroundFilter({

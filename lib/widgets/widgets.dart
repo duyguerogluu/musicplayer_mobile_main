@@ -20,3 +20,4 @@ export 'song_card.dart';
 export 'playlist_card.dart';
 export 'seekbar.dart';
 export 'players_buttons.dart';
+export 'page_routes.dart';
